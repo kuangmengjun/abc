@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #box {
+        height: 100%;
+        width: 288px;
+        overflow: hidden;
+        margin: 100px auto;
+        float: left;
+        margin-right: 30px;
+
+    }
+
+    ul li {
+        overflow: hidden;
+        width: 284px;
+        border: 1px dashed pink;
+        list-style: none;
+        position: relative;
+        transition: height .3s;
+        text-align: center;
+        overflow: hidden;
+        height: 40px;
+
+    }
+
+    ul .active {
+        width: 284px;
+        border: 1px dashed pink;
+        list-style: none;
+        transition: height .3s;
+        text-align: center;
+        height: 350px;
+
+    }
+
+    li img {
+        width: 160px;
+        height: 160px;
+        margin-top: 20px;
+    }
+
+    li .title {
+        /* border: 1px solid red; */
+        font-weight: 600;
+        color: black;
+        display: block;
+        /* position: absolute;
+        top: 0; */
+        background: white;
+        height: 40px;
+        font-size: 12px;
+        width: 284px;
+        line-height: 40px;
+    }
+
+    li .price {
+        color: red;
+        font-weight: 800;
+        font-size: 16px;
+    }
+
+    li .titleA {
+        font-size: 12px;
+        color: black;
+
+    }
+
+    li .titleB {
+        font-size: 12px;
+        color: black;
+        line-height: 40px;
+        /* display: none; */
+    }
+
+    li a {
+        text-decoration: none;
+    }
+
+    li span {
+        font-size: 12px;
+        line-height: 40px;
+        color: red;
+        float: right;
+    }
+
+    .p1 {
+        display: block;
+        font-size: 12px;
+
+    }
+
+    .p1 a {
+        color: red;
+        font-weight: 900;
+    }
+
+
+</style>
+
+<body>
+
+    <script>
+
+
+        var data = [{
+            "src": "https://img2.ch999img.com/pic/product/160x160/20191106094800559.jpg",
+            "title": "华为 Mate 30 （TAS-AN00）全网通5G版",
+            "price": "￥5499.00",
+            "titleA": "1、麒麟990 5G芯片<br>2、27W超级无线充"
+        }, {
+            "src": "https://img2.ch999img.com/pic/product/160x160/20190911103416335.jpg",
+            "title": "Apple iPhone 11 （A2223）全网通",
+            "price": "￥5199.00",
+            "titleA": "1、A13 仿生芯片<br>2、1200万后置双摄"
+        }, {
+            "src": "https://img2.ch999img.com/pic/product/160x160/20191015171720571.jpg",
+            "title": "一加手机 7T （HD1900）全网通版",
+            "price": "￥3199.00",
+            "titleA": "1、骁龙855 Plus旗舰<br>2、4800万超广角三摄"
+        }, {
+            "src": "https://img2.ch999img.com/pic/product/160x160/20190723161722265.jpg",
+            "title": "华为 荣耀9X （HLK-AL00）全网通版",
+            "price": "￥1799.00",
+            "titleA": "1、海思麒麟810<br>2、升降式摄像头"
+        }, {
+            "src": "https://img2.ch999img.com/pic/product/160x160/20190512230954370.jpg",
+            "title": "华为 P30 （ELE-AL00）全网通版",
+            "price": "￥3988.00",
+            "titleA": "1、海思麒麟980<br>2、30倍变焦摄像"
+        }]
+
+        //提供构造函数
+        function Person(itemData) {
+            this.root = null;
+            this.itemData = itemData;
+            // console.log(itemData);
+
+        }
+
+
+        Person.prototype = {
+
+            constructor: Person,
+            createHTML() {
+                // console.log(this.itemData);
+
+                var liHtml = this.itemData.map(function (ele, index) {
+                    return `              
+          
+             <li class="${index == 0 ? "active" : ""}">
+          
+             <a class="titleB" href="" style="display:${index == 0 ? "none" : "block"}">${ele.title}<span>${ele.price}</span></a>
+             <img src="${ele.src}" alt="">
+             <a class="title" href="">${ele.title}</a>
+             <p class="price">${ele.price}</p>
+             <a class="titleA" href="">${ele.titleA}</a>
+            </li> 
+           ` }).join('')
+                var boxItem = document.createElement("ul");
+                boxItem.id = 'box'
+                boxItem.innerHTML = liHtml
+                this.root = boxItem;
+                // console.log(boxItem);
+
+            },
+            renderUI: function () {
+
+                // console.log(this.root);
+                document.body.appendChild(this.root);
+            },
+            toggleClassEvent() {
+                var oLis = this.root.getElementsByTagName('li');
+
+                for (let i = 0; i < oLis.length; i++) {
+
+                    oLis[i].onmouseenter = function () {
+                        for (var k = 0; k < oLis.length; k++) {
+                            oLis[k].style.height = "40px";
+                            oLis[k].classList.remove("active");
+                            oLis[k].getElementsByClassName('titleB')[0].style.display = 'block'
+                        }
+                        this.style.height = "350px";
+                        this.classList.add("active");
+                        this.getElementsByClassName('titleB')[0].style.display = 'none';
+
+                    }
+
+                }
+            }
+
+
+        }
+
+        var manager = new Person(data);
+        manager.createHTML();
+        manager.renderUI();
+        manager.toggleClassEvent()
+
+        var manager = new Person(data);
+        manager.createHTML();
+        manager.renderUI();
+        manager.toggleClassEvent()
+
+        var manager = new Person(data);
+        manager.createHTML();
+        manager.renderUI();
+        manager.toggleClassEvent()
+
+        var manager = new Person(data);
+        manager.createHTML();
+        manager.renderUI();
+        manager.toggleClassEvent()
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* (1) 检查JavaScript数据类型 */
+        /* 方案：typeof */
+        var str1 = "今天天气真不错！";
+        var num1 = 100.5;
+        var boo1 = true;
+        var nulA = null;
+        var t;
+
+        /* 检查str1这个变量的数据类型 */
+        console.log("str1 的数据类型 = ", typeof str1); //string
+        console.log("num1 的数据类型 = ", typeof num1); //number
+        console.log("boo1 的数据类型 = ", typeof boo1); //boolean
+
+        /* 设计这门语言的时候写错了  正确的结果：null  为什么没有改回来呢？ */
+        console.log("nulA 的数据类型 = ", typeof null); //object  !!! （非常特殊）  错误
+        console.log(typeof t);
+    </script>
+</body>
+
+</html>

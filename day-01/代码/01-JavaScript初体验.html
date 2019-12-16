@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 方案(1) -->
+    <!-- 01-创建script标签 -->
+    <!-- 02-设置标签的type -->
+    <!-- 03-在标签的中间编写JavaScript代码 -->
+    <script type="text/javascript">
+        /*中创建h1标签显示hello JavaScript，插入到页面中 */
+        // [1] 创建标签-h1
+        var h1 = document.createElement("h1");
+        // [2] 设置标签
+        h1.innerHTML = "hello JavaScript 1908";
+        // [3] 插入页面
+        document.body.appendChild(h1);
+    </script>
+
+    <!-- 方案(2) -->
+    <!-- 01-创建script标签 -->
+    <!-- 02-创建.js文件，在该文件中编写对应的JavaScript代码 -->
+    <!-- 03-通过src把js文件引入进来 -->
+    <script src="outer.js">
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <!-- 注意点(1) 设置type="text/javascript" 可以省略不写 -->
+    <!-- 注意点(2) script的位置：理论上可以写在任何的位置，但是不建议随便乱写-->
+    <!-- 建议：我们总是把script标签写在body关闭标签的前面 -->
+    <!-- 注意点(3) script标签如果通过src引入了外部文件 并且在内部也编写了js代码，那么js会被覆盖 -->
+    <div>我是div</div>
+    <span>我是span</span>
+
+    <script>
+        document.write("Hi 1908~");
+    </script>
+
+    <!-- 标签内部的代码会被js文件中的代码覆盖 -->
+    <script src="./outer.js">
+        document.write("文顶顶");
+    </script>
+</body>
+
+</html>
